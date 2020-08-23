@@ -1,0 +1,60 @@
+{
+  "name": "farcraft",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": " TS_NODE_PROJECT=webpack/tsconfig.json CONFIG=development webpack-dev-server --config webpack/config.ts",
+    "build": "TS_NODE_PROJECT=webpack/tsconfig.json CONFIG=production MODE=patch webpack --config webpack/config.ts",
+    "build:minor": "TS_NODE_PROJECT=webpack/tsconfig.json CONFIG=production MODE=minor webpack --config webpack/config.ts",
+    "build:major": "TS_NODE_PROJECT=webpack/tsconfig.json CONFIG=production MODE=major webpack --config webpack/config.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/limbosounds/farcraft.git"
+  },
+  "author": "Limbo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/limbosounds/farcraft/issues"
+  },
+  "homepage": "https://github.com/limbosounds/farcraft#readme",
+  "dependencies": {
+    "@types/webpack-dev-server": "^3.11.0",
+    "mobx": "^5.15.6",
+    "mobx-react": "^6.2.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "@theadmasters/version-manager": "^0.2.0",
+    "@types/html-webpack-plugin": "^3.2.3",
+    "@types/mini-css-extract-plugin": "^0.9.1",
+    "@types/node": "^14.6.0",
+    "@types/optimize-css-assets-webpack-plugin": "^5.0.1",
+    "@types/react": "^16.9.46",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/terser-webpack-plugin": "^4.1.0",
+    "@types/uglifyjs-webpack-plugin": "^1.1.0",
+    "@types/webpack": "^4.41.21",
+    "css-loader": "^4.2.1",
+    "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.10.0",
+    "node-sass": "^4.14.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "sass-loader": "^9.0.3",
+    "source-map-loader": "^1.0.2",
+    "style-loader": "^1.2.1",
+    "terser-webpack-plugin": "^4.1.0",
+    "ts-loader": "^8.0.2",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
