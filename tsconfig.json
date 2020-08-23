@@ -18,6 +18,8 @@
         "declaration": false,
         "removeComments": true,
         "noLib": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true,
         "types": [ "node" ],

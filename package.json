@@ -26,7 +26,8 @@
     "mobx-react": "^6.2.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "three": "^0.119.1"
   },
   "devDependencies": {
     "@theadmasters/version-manager": "^0.2.0",
