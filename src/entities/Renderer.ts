@@ -1,7 +1,7 @@
 import "../../typings/Console"
 
 import { WebGLRenderer } from "three"
-import { getDimensions } from "utils/client"
+import { getClientDimensions } from "utils/client"
 
 const canvas = document.createElement("canvas")
 var context = canvas.getContext("webgl2")
@@ -18,7 +18,9 @@ const renderer = new WebGLRenderer({
 	canvas
 })
 
-const dimensions = getDimensions()
+const dimensions = getClientDimensions()
 renderer.setSize(dimensions.width, dimensions.height)
+renderer.shadowMap.enabled = true
+renderer.shadowMap.autoUpdate = true
 
 export const ERenderer = renderer

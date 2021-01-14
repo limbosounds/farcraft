@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom"
 import App from "App"
 
 import "../typings/Console"
+import "typings/global"
 
 export interface ProviderProps {
 	

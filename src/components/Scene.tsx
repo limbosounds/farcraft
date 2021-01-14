@@ -1,10 +1,13 @@
 import React from "react"
+import * as t from "three"
 import { ERenderer } from "entities/Renderer"
-import { EScene } from "entities/Scene"
-import { ECamera } from "entities/Camera"
+import CamerasManager from "managers/CamerasManager"
 
 export interface SceneProps {
-	
+	background?: t.Scene["background"]
+	children: (
+		scene: t.Scene
+	) => React.ReactNode
 }
 
 export interface SceneState {
@@ -14,21 +17,30 @@ export interface SceneState {
 export default
 class Scene
 extends React.Component<SceneProps, SceneState> {
+	static defaultProps = {
+		background: "black"
+	}
+
+	scene
+		= new t.Scene()
+
 	frame
 		: number
 
+	private setupScene = () => {
+		this.scene.background = this.props.background!
+	}
+
 	componentDidMount() {
+		this.setupScene()
+
 		document.body.appendChild(ERenderer.domElement)
 		this.startRenderLoop()
-
-		document.addEventListener("wheel", this.handleWheel)
 	}
 
 	componentWillUnmount() {
 		document.body.removeChild(ERenderer.domElement)
 		this.stopRenderLoop()
-
-		document.removeEventListener("wheel", this.handleWheel)
 	}
 
 	startRenderLoop = () => {
@@ -36,7 +48,7 @@ extends React.Component<SceneProps, SceneState> {
 	}
 
 	renderLoop = () => {
-		ERenderer.render(EScene, ECamera.instance)
+		ERenderer.render(this.scene, CamerasManager.activeCamera.instance)
 		this.frame = requestAnimationFrame(this.renderLoop)
 	}
 
@@ -44,16 +56,7 @@ extends React.Component<SceneProps, SceneState> {
 		cancelAnimationFrame(this.frame)
 	}
 
-	handleWheel = (
-		event: WheelEvent
-	) => {
-		if (event.deltaY > 0)
-			ECamera.fov += 2
-		else
-			ECamera.fov -= 2
-	}
-
 	render() {
-		return this.props.children
+		return this.props.children(this.scene)
 	}
 }

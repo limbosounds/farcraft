@@ -4,7 +4,7 @@ export type ClientDimensions = {
 	aspectRatio: number
 }
 
-export const getDimensions = (): ClientDimensions => {
+export const getClientDimensions = (): ClientDimensions => {
 	const { innerHeight, innerWidth} = window
 	return {
 		width: innerWidth,

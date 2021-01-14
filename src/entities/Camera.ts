@@ -1,42 +1,75 @@
 import { PerspectiveCamera } from "three"
-import { ClientDimensions, getDimensions } from "utils/client"
+import { getClientDimensions } from "utils/client"
 
-class Camera {
-	private _dimensions
-		: ClientDimensions
-		= getDimensions()
+export interface ECameraConstructorProps {
+	initialPosition?: Coordinates3D
+	initialRotation?: Coordinates3D
+	initialFov?: number,
+	initialDrawingDistance?: number,
+	aspectRatio?: number
+}
 
-	private _fov
-		: number
-		= 75
+export class ECamera {
+	static readonly CONST = {
+		FOV: {
+			DEFAULT: 60,
+			MIN: 50,
+			MAX: 100
+		},
+		DRAWING_DISTANCE: {
+			DEFAULT: 1000,
+			MIN: 500,
+			MAX: 10000
+		}
+	}
 
-	private _drawingDistance
-		: number
-		= 1000
+	constructor(
+		props?: ECameraConstructorProps
+	) {
+		const {
+			initialPosition = {
+				x: 0,
+				y: 0,
+				z: 0,
+			},
+			initialRotation = {
+				x: 0,
+				y: 0,
+				z: 0,
+			},
+			initialFov = ECamera.CONST.FOV.DEFAULT,
+			initialDrawingDistance = ECamera.CONST.DRAWING_DISTANCE.DEFAULT,
+			aspectRatio = getClientDimensions().aspectRatio
+		} = props || {}
+
+		this.instance = new PerspectiveCamera(
+			initialFov,
+			aspectRatio,
+			0.1,
+			initialDrawingDistance
+		)
+
+		this.instance.position.set(initialPosition.x, initialPosition.y, initialPosition.z)
+		this.instance.rotation.set(initialRotation.x, initialRotation.y, initialRotation.z)
+	}
+
+	instance
+		: PerspectiveCamera
 
 	get fov(): number {
-		return this._fov
+		return this.instance.fov
 	}
 
 	set fov(value: number) {
-		this._fov = value
-		this.instance.fov = this._fov
+		this.instance.fov = value
 		this.instance.updateProjectionMatrix()
 	}
 
 	get drawingDistance(): number {
-		return this._drawingDistance
+		return this.instance.far
 	}
 
-	instance = new PerspectiveCamera(
-		this._fov,
-		this._dimensions.aspectRatio,
-		0.1,
-		this._drawingDistance
-	)
+	get aspectRatio(): number {
+		return this.instance.aspect
+	}
 }
-
-export const ECamera = new Camera()
-
-ECamera.instance.position.z = 15
-ECamera.instance.position.y = 5

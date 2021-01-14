@@ -22,6 +22,7 @@
   "homepage": "https://github.com/limbosounds/farcraft#readme",
   "dependencies": {
     "@types/webpack-dev-server": "^3.11.1",
+    "cannon-es": "^0.15.1",
     "mobx": "^5.15.6",
     "mobx-react": "^6.2.5",
     "react": "^17.0.1",
