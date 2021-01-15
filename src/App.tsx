@@ -21,7 +21,7 @@ export default
 class App
 extends React.Component<AppProps, AppState> {
 	componentDidMount() {
-		document.addEventListener("click", CamerasManager.nextCamera) 
+		document.addEventListener("click", CamerasManager.nextCamera)
 	}
 
 	render() {
